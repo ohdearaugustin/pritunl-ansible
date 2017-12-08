@@ -1,1 +1,11 @@
----
+galaxy_info:
+  author: Jonas Reindl
+  description: BlalaBla
+  license:
+  min_ansible_version: 
+  platforms:
+  - name: Ubuntu
+    version:
+    - xenial
+  galaxy_tags:
+    - linux
