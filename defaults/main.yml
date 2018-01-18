@@ -1,1 +1,6 @@
 ---
+#Template Vars
+default_soft_limit: 64000
+default_hard_limit: 64000
+root_soft_limit: 64000
+root_hard_limit: 64000
