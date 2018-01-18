@@ -1,6 +1,6 @@
-# Skeleton for Ansible Roles
+# Pritunl Ansible Role 
 
-This is a skeleton for creating ansible roles according to [Ansible Playbooks Best Practices Directory Layout] (https://docs.ansible.com/ansible/latest/playbooks_best_practices.html#directory-layout).
+This is a ansible role for installing a [Pritunl] (https://pritunl.com/) server.
 
 Tasks:
 - Task 1
@@ -8,8 +8,7 @@ Tasks:
 - Task 3
 
 This role supportes following remote hosts:
-- ubuntu
-- etc
+- ubuntu xenial
 
 ## Getting Started
 
@@ -20,7 +19,6 @@ These instructions will get you a copy of the project up and running on your loc
 You will need following software/roles to use it:
 ```
 Ansible
-Give examples
 ```
 
 ### Installing
@@ -28,7 +26,7 @@ Give examples
 Clone the skeleton into your ansible role folder.
 
 ```
-git clone https://github.com/ohdearaugustin/ansible-role-skeleton
+git clone https://github.com/ohdearaugustin/pritunl-ansible
 ```
 
 And modify it as you need it.
@@ -40,14 +38,36 @@ If you want to apply this variables to a host group create a file `group_vars/yo
 This paragraph will explain the used variables of the role. 
 Following Variables are used by the Role:
 ```
-example_var1: example1
-example_var2: example2
+default_soft_limit: 64000
+default_hard_limit: 64000
+root_soft_limit: 64000
+root_hard_limit: 64000
+pritunl_mongodb_host: "db.example.com"
+pritunl_mongodb_port: 27017
+pritunl_mongodb_name: "mypritunldb"
+pritunl_log_path: "/var/log/mypritunl.log"
+pritunl_static_cache: "true"
+pritunl_bind_addr: "0.0.0.0"
+pritunl_www_path: "/usr/share/pritunl/www"
+pritunl_local_address_interface: "auto"
+pritunl_port: 443
 ```
 
 Following represent the default values for specfic variables:
 ```
-example_var1: default_value1
-example_var2: default_value2
+default_soft_limit: 64000
+default_hard_limit: 64000
+root_soft_limit: 64000
+root_hard_limit: 64000
+pritunl_mongodb_host: "localhost"
+pritunl_mongodb_port: 27017
+pritunl_mongodb_name: "pritunl"
+pritunl_log_path: "/var/log/pritunl.log"
+pritunl_static_cache: "true"
+pritunl_bind_addr: "0.0.0.0"
+pritunl_www_path: "/usr/share/pritunl/www"
+pritunl_local_address_interface: "auto"
+pritunl_port: 443
 ```
 
 These variables have to been, otherwise the role won't be functional.
@@ -67,14 +87,12 @@ Please read [CONTRIBUTING.md](https://github.com/) for details on our code of co
 
 * **Jonas Reindl** - *Initial work* - [ohdearaugustin](https://github.com/ohdearaugustin)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ohdearaugustin/pritunl-ansible/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the BALA License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* [Ignacio Sanchez Gines] (https://github.com/drhelius) wrote the [travis-ansible-demo] (https://github.com/drhelius/travis-ansible-demo) for the roles with ansible  
