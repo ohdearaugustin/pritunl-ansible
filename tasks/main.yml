@@ -52,7 +52,7 @@
 - name: Get Install Key
   command: pritunl setup-key
   register: setup_key
- tags: pritunl, packages
+  tags: pritunl, packages
 
 - debug:
     var: setup_key.stdout_lines
