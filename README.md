@@ -1,5 +1,5 @@
 # Pritunl Ansible Role 
-
+[![Build Status](https://travis-ci.org/ohdearaugustin/pritunl-ansible.svg?branch=master)](https://travis-ci.org/ohdearaugustin/pritunl-ansible)
 This is a ansible role for installing a [Pritunl] (https://pritunl.com/) server.
 
 Tasks:
