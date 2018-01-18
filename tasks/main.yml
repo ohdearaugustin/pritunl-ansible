@@ -1,1 +1,59 @@
 ---
+- name: "Add pritunl repo"
+  apt_repository:
+    repo: deb http://repo.pritunl.com/stable/apt xenial main
+    state: present
+
+- name: "Add pritunl repo key"
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 07568D9BB55FF9E5287D586017AE645C0CF8E292A
+    state: present
+
+- name: "Add mongodb repo"
+  apt_repository:
+    repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse
+    state: present
+
+- name: "Add mongodb repo key"
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 0C49F3730359A14518585931BC711F9BA15703C6
+    state: present
+
+- name: Update APT package cache
+  apt:
+    update_cache: yes
+
+- name: Install pritunl and mongodb
+  apt:
+    state: installed
+    pkg: "{{item}}"
+  with_items:
+    - pritunl
+    - mongodb-org
+
+- name: Start and enable Services
+  service:
+    state: started
+    name: "{{item}}"
+    enabled: yes
+  with_items:
+    - pritunl
+    - mongod
+
+- name: Get Install Key
+  command: pritunl setup-key
+  register: setup_key
+
+- debug:
+    var: setup_key.stdout_lines
+
+- name: Setup Open File Limit
+  template:
+    src: pritunl-limits.conf.j2
+    dest: /etc/security/limits.d/pritunl-limits.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
